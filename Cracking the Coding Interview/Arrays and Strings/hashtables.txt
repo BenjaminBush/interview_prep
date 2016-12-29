@@ -1,0 +1,1 @@
+Hashtables map keys to alues for high efficiecy lookup
