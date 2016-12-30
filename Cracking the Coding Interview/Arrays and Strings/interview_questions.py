@@ -143,3 +143,92 @@ def strCompression(string):
 	else:
 		return compressed
 
+# 1.7 : Given an image represented by an NxN matrix, where each pixel is 4 bytes
+# write a method to rotate the image by 90 degrees
+
+# | x |	x |	x |	x |		
+# ------------------	  
+# |	y |	y |	y |	y |
+# ------------------	
+# |	z |	z |	z |	z |
+# ------------------
+# |	w |	w |	w |	w |
+
+# -->
+
+# | w |	z |	y |	x |
+# ------------------	  
+# | w |	z |	y |	x |
+# ------------------	
+# | w |	z |	y |	x |
+# ------------------
+# | w |	z |	y |	x |
+
+# [0][0] --> [0][n]
+# [0][1] --> [1][n]
+# ...
+# [1][0] --> [0][n-1]
+# [1][1] --> [1][n-1]
+# ...
+# [n][0] --> [0][0]
+# [n][n] --> [n][0]
+
+def rotateMatrix(matrix):
+	n = len(matrix)
+	for layer in range(0, n/2):
+		first = layer
+		last = n - 1 - layer
+		for i in range(first, last):
+			offset = i - first
+			top = matrix[first][i]
+			matrix[first][i] = matrix[last-offset][first]
+			matrix[last-offset][first] = matrix[last][last-offset]
+			matrix[last][last-offset] = matrix[i][last]
+			matrix[i][last] = top
+	return matrix
+
+from copy import deepcopy
+def rotate(matrix):
+	rotated = deepcopy(matrix)
+	n = len(matrix)
+	for i in range(0, n-1):
+		for j in range(0, n-1):
+			rotated[i][n-1-j] = matrix[j][j]
+	return rotated
+
+
+# 1.8 : Write an algorithm such that if an element in an MxN matrix is 0
+# its entire row and column are set to 0
+
+def zeroify(matrix):
+	m = len(matrix)
+	n = len(matrix[0])
+	new_matrix = deepcopy(matrix)
+	for i in range(0, m-1): #rows
+		for j in range(0, n-1): #cols
+			if matrix[i][j] == 0:
+				nullifyRow(new_matrix, i)
+				nullifyCol(new_matrix, j)
+	return new_matrix
+
+def nullifyRow(matrix, index):
+	for j in range(len(matrix[0])):
+		matrix[index][j] = 0
+def nullifyCol(matrix, index):
+	for k in range(len(matrix)):
+		matrix[k][index] = 0
+
+
+# 1.9 : Assuming we are given the isSubstring method, check to see if string2
+# is a rotation of string1 using only 1 call to isSubstring
+
+def stringRotation(string1, string2):
+	string1 = string1.lower()
+	string2 = string2.lower()
+
+	# String2 will always be a substring of string1string1
+	big_one = string1+string1
+	return string2 in big_one
+
+
+print(stringRotation("waterbottle", "erbottlewat"))
