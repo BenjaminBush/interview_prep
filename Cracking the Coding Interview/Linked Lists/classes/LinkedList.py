@@ -36,7 +36,7 @@ class LinkedList(object):
         while curr.next != None:
             total += 1
             curr = curr.next
-        return total
+        return total + 1
         
     # Find a given value if it is in the list and return the node with that value
     def find(self, data):

@@ -17,7 +17,7 @@ def kth_to_last(linkedlist, k):
         return linkedlist.head
     
     curr = linkedlist.head
-    for i in range(length-k+1):
+    for i in range(length-k):
         curr = curr.next
     
     return curr.data
