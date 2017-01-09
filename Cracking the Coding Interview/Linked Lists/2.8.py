@@ -30,7 +30,6 @@ def detect_loop(linkedlist):
     # Move slow to head and advance them both slowly now
     slow_p = linkedlist.head
     while slow_p is not fast_p:
-        k += 1
         slow_p = slow_p.next
         fast_p = fast_p.next
     
