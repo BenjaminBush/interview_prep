@@ -13,7 +13,7 @@ def bfs(graph, start, end):
         # Check if node is goal-node
         if current_node == end:
             return visited
-
+        # For each neighbor, put it on the fringe if it hasn't been visited
         for node in graph[current_node]:
             if node not in visited:
                 fringe.put(node)
@@ -32,7 +32,7 @@ def dfs(graph, start, end):
             return visited
 
         # expanding nodes
-        for node in reversed(graph[current_node]):
+        for node in graph[current_node]:
             if node not in visited:
                 fringe.append(node)
 
