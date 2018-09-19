@@ -73,6 +73,16 @@ class LinkedList(object):
 				curr = curr.next
 		return None
 
+	def reverse(self):
+		curr = self.head
+		prev = None
+		while curr is not None:
+			next = curr.next
+			curr.next = prev
+			prev = curr
+			curr = next
+		self.head = prev
+
 	def __str__(self):
 	    index = self.head
 	    if index.data == None:
@@ -81,7 +91,8 @@ class LinkedList(object):
 	    	nodestore = [str(index.data)]
 	    while index.next != None:
 	        index = index.next
-	        nodestore.append(str(index.data))
+	        if index.data != None:
+	        	nodestore.append(str(index.data))
 	    return "LinkedList  [ " + "->".join(nodestore) + " ]"
 
 def randomLinkedList(length, min, max):
