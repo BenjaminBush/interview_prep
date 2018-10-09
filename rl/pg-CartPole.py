@@ -116,6 +116,7 @@ for i in range(0, test_cases):
 	reward_sum = 0
 	observation = env.reset()
 	while True:
+                env.render()
 		p, h = policy_forward(observation)
 		action = 1 if np.random.uniform() < p else 0
 
