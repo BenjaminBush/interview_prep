@@ -63,8 +63,8 @@ for episode in range(0, num_rollouts):
 		observations.append(x)
 
 		# Forward pass
-		p, hidden_s = policy_forward(x)
-		hidden_states.append(hidden_s)
+                p, hidden_s = policy_forward(x)
+                hidden_states.append(hidden_s)
 
 
 		# Calculate action and fake label
